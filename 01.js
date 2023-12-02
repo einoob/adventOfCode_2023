@@ -1,6 +1,6 @@
 const { input, testInput, partTwoTestInput } = require("./inputs/01");
 
-const initIndexObject = () => [
+const numberSubstrings = [
   "one",
   "two",
   "three",
@@ -10,9 +10,19 @@ const initIndexObject = () => [
   "seven",
   "eight",
   "nine",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
 ];
 
 const getValue = (word) => {
+  if (word.length === 1) return word;
   if (word === "one") return "1";
   if (word === "two") return "2";
   if (word === "three") return "3";
@@ -51,17 +61,8 @@ const getCalibrationValuePartTwo = (map) => {
   for (y = 0; y < lines.length; y++) {
     let firstDigit = { index: null, value: "" };
     let lastDigit = { index: -1, value: "" };
-    let numbers = initIndexObject();
-    for (i = 0; i < lines[y].length; i++) {
-      if (Number.isInteger(+lines[y][i])) {
-        if (!firstDigit.value) {
-          firstDigit = { index: i, value: lines[y][i] };
-        }
-        lastDigit = { index: i, value: lines[y][i] };
-      }
-    }
-    for (i = 0; i < numbers.length; i++) {
-      let nbr = numbers[i]
+    for (i = 0; i < numberSubstrings.length; i++) {
+      let nbr = numberSubstrings[i];
       if (
         lines[y].indexOf(nbr) != -1 &&
         (firstDigit.index === null || lines[y].indexOf(nbr) < firstDigit.index)
@@ -73,14 +74,24 @@ const getCalibrationValuePartTwo = (map) => {
         lastDigit.index = lines[y].lastIndexOf(nbr);
         lastDigit.value = getValue(nbr);
       }
-    } 
+    }
     values.push(parseInt(firstDigit.value + lastDigit.value));
   }
   return values.reduce((a, b) => a + b, 0);
 };
 
-console.log("testInput", getCalibrationValuePartOne(testInput));
-console.log("input", getCalibrationValuePartOne(input));
+console.log(
+  "part1\n",
+  "testInput",
+  getCalibrationValuePartOne(testInput),
+  "input",
+  getCalibrationValuePartOne(input)
+);
 
-console.log("testInput", getCalibrationValuePartTwo(partTwoTestInput));
-console.log("input", getCalibrationValuePartTwo(input));
+console.log(
+  "part2\n",
+  "testInput",
+  getCalibrationValuePartTwo(partTwoTestInput),
+  "input",
+  getCalibrationValuePartTwo(input)
+);
