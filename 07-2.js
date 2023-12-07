@@ -1,6 +1,6 @@
 const { input, testInput } = require("./inputs/07");
 
-const transLateCard = (card) => {
+const translateCard = (card) => {
   if (card === "A") return 14;
   if (card === "K") return 13;
   if (card === "Q") return 12;
@@ -84,7 +84,7 @@ const countHandStrengths = (input) => {
     cardSet.hand = cardSet.hand.split("");
     cardSet.bid = +cardSet.bid;
     for (let i = 0; i < cardSet.hand.length; i++) {
-      cardSet.hand[i] = transLateCard(cardSet.hand[i]);
+      cardSet.hand[i] = translateCard(cardSet.hand[i]);
     }
     cardSet["strength"] = countStrength(cardSet.hand);
   });
