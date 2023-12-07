@@ -41,7 +41,7 @@ const sortCards = (a, b) => {
   return a.strength - b.strength;
 };
 
-const countWinnigs = (cardSets) => {
+const countWinnings = (cardSets) => {
   let winnings = [];
   for (let i = 0; i < cardSets.length; i++) {
     winnings.push(cardSets[i].bid * (i + 1));
@@ -64,7 +64,7 @@ const countHandStrengths = (input) => {
     cardSet["strength"] = countStrength(cardSet.hand);
   });
   cardSets.sort((a, b) => sortCards(a, b));
-  let winnings = countWinnigs(cardSets);
+  let winnings = countWinnings(cardSets);
   return winnings.reduce((a, b) => a + b, 0);
 };
 
