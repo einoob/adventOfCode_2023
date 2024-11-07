@@ -4,7 +4,7 @@ const translateCard = (card) => {
   if (card === "A") return 14;
   if (card === "K") return 13;
   if (card === "Q") return 12;
-  if (card === "J") return 1;
+  if (card === "J") return 11;
   if (card === "T") return 10;
   return +card;
 };
